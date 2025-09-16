@@ -1,5 +1,6 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,11 +11,19 @@ import lombok.NoArgsConstructor;
 
 public class Servicio {
 
+    @NotBlank
     private int idServicio;
-    private String nombreServicio;
-    private String descripcion;
-    private int duracion;
-    private double precio;
 
+    @NotBlank
+    private String nombreServicio;
+
+
+    private String descripcion;
+
+    @NotBlank
+    private int duracion;
+
+    @NotBlank
+    private double precio;
 
 }
