@@ -29,10 +29,11 @@ CREATE TABLE administrador (
 
 -- Tabla producto
 CREATE TABLE producto (
-                          id_producto INT AUTO_INCREMENT PRIMARY KEY,
-                          nombre_producto VARCHAR(100),
-                          descripcion VARCHAR(100),
-                          precio DECIMAL(10,2)
+    id_producto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_producto VARCHAR(100),
+    descripcion VARCHAR(100),
+    precio DECIMAL(10,2),
+    imagen varchar(100)
 );
 
 -- Tabla pedido
