@@ -1,6 +1,9 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,22 +11,23 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 
 public class DetallePedido {
 
-    @NotBlank
-    private int idDetalle;
+    @Id
+    private Integer idDetalle;
 
-    @NotBlank
-    private int idPedido;
+    @NotNull
+    private Integer idPedido;
 
-    @NotBlank
-    private int idProducto;
+    @NotNull
+    private Integer idProducto;
 
-    @NotBlank
-    private int cantidad;
+    @NotNull
+    private Integer cantidad;
 
-    @NotBlank
+    @NotNull
     private double subtotal;
 
 }

@@ -1,28 +1,33 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.processing.Exclude;
 
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 
 public class Pedido {
 
-    @NotBlank
-    private int idPedido;
+    @Id
+    private Integer idPedido;
 
-    @NotBlank
-    private int idUsuario;
+    @NotNull
+    private Integer idUsuario;
 
-    @NotBlank
+    @NotNull
     private LocalDateTime fechaPedido;
 
-    @NotBlank
+    @NotNull
     private double total;
 
     @NotBlank

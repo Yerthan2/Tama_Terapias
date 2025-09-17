@@ -1,11 +1,21 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 
 public class Producto {
 
-    @NotBlank
-    private int idProducto;
+    @Id
+    private Integer idProducto;
 
     @NotBlank
     private String nombreProducto;
@@ -13,7 +23,7 @@ public class Producto {
     @NotBlank
     private String descripcion;
 
-    @NotBlank
+    @NotNull
     private double precio;
 
     @NotBlank
