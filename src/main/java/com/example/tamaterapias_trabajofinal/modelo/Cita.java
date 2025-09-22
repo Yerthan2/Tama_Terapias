@@ -1,9 +1,6 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,21 +13,25 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Table(name = "cita")
 
 public class Cita {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cita")
     private int idCita;
 
     //Se utiliza Positive, para que el valor, sea mayor a 0
     @NotNull
-    @Positive
-    private Integer idUsuario;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 
     @NotNull
-    @Positive
-    private Integer idServicio;
+    @ManyToOne
+    @JoinColumn(name="id_servicio", nullable = false)
+    private Servicio servicio;
 
     @NotNull
     @Positive

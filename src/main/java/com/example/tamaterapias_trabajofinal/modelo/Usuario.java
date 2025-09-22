@@ -39,6 +39,8 @@ public class Usuario {
     private LocalDate fecha_registro;
 
     //Parte de las relaciones
+    //Aquí tenemos que tener en cuenta, que el usuario puede tener muchos pedidos y muchas citas
+
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Pedido> pedidos;
 

@@ -1,12 +1,12 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class Producto {
 
     @Id
+    @Column(name = "id_producto")
     private Integer idProducto;
 
     @NotBlank
@@ -29,5 +30,9 @@ public class Producto {
 
     @NotBlank
     private String imagen;
+
+    //Relaciones
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<DetallePedido> detalles;
 
 }

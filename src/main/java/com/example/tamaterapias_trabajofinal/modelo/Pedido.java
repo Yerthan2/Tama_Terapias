@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.processing.Exclude;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,10 +20,14 @@ import java.time.LocalDateTime;
 public class Pedido {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pedido")
     private Integer idPedido;
 
     @NotNull
-    private Integer idUsuario;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable=false)
+    private Usuario usuario;
 
     @NotNull
     private LocalDateTime fechaPedido;
@@ -33,5 +38,8 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     @NotNull
     private EstadoPedido estadoPedido;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<DetallePedido> detalles;
 
 }

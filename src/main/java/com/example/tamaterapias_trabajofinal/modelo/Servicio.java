@@ -1,13 +1,13 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 public class Servicio {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_servicio")
     private Integer idServicio;
 
     @NotBlank
@@ -31,4 +33,9 @@ public class Servicio {
     @NotNull
     private double precio;
 
+
+    //Relaciones
+
+    @OneToMany(mappedBy = "servicio", cascade = CascadeType.ALL)
+    private List<Cita> citas;
 }

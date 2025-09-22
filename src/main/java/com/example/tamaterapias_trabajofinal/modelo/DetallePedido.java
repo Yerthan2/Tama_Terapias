@@ -1,8 +1,6 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -17,13 +15,19 @@ import lombok.NoArgsConstructor;
 public class DetallePedido {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_detalle")
     private Integer idDetalle;
 
     @NotNull
-    private Integer idPedido;
+    @ManyToOne
+    @JoinColumn(name="id_pedido", nullable = false)
+    private Pedido Pedido;
 
     @NotNull
-    private Integer idProducto;
+    @ManyToOne
+    @JoinColumn(name = "id_producto", nullable = false)
+    private Producto producto;
 
     @NotNull
     private Integer cantidad;
