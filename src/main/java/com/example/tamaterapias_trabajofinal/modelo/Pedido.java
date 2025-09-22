@@ -1,9 +1,9 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jdk.jfr.Name;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
+@Table(name = "pedido")
 public class Pedido {
 
     @Id
@@ -30,7 +30,8 @@ public class Pedido {
     @NotNull
     private double total;
 
-    @NotBlank
+    @Enumerated(EnumType.STRING)
+    @NotNull
     private EstadoPedido estadoPedido;
 
 }

@@ -1,15 +1,23 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+
+
 public class Cita {
 
     @Id
@@ -33,6 +41,7 @@ public class Cita {
     private LocalDateTime fecha;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private EstadoPedido estadoPedido;
 
 }

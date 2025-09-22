@@ -23,7 +23,7 @@ CREATE TABLE usuario (
 CREATE TABLE administrador (
     id_administrador INT AUTO_INCREMENT PRIMARY KEY not null,
     nombre VARCHAR(100) not null,
-    email VARCHAR(100) not null,
+    email VARCHAR(100) not null unique,
     contrasena VARCHAR(100) not null
 );
 
