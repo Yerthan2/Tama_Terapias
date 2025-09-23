@@ -17,25 +17,15 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario extends Persona{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    @NotBlank
-    private String nombre;
-
-    @NotBlank
-    @Column(unique = true)
-    private String email;
-
-    @NotBlank
-    @Column(name = "contrasena")
-    private String contasena;
-
     @PastOrPresent
+    @Column(name = "fecha_registro")
     private LocalDate fecha_registro;
 
     //Parte de las relaciones

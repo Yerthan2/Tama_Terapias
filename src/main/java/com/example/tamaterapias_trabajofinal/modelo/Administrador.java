@@ -14,22 +14,12 @@ import java.util.List;
 @Entity
 @Table(name = "administrador")
 
-public class Administrador {
+public class Administrador extends Persona {
 
 
     @Id
     @Column(name = "id_administrador")
     private int idAdministrador;
-
-    @NotBlank
-    private String nombre;
-
-    @NotBlank
-    @Column(unique = true)
-    private String email;
-
-    @NotBlank
-    private String contrasena;
 
     //Relaciones
     //Un administrador, debería de tener citas, porque por eso trabaja
