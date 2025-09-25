@@ -21,6 +21,9 @@ public class Administrador extends Persona {
     @Column(name = "id_administrador")
     private int idAdministrador;
 
+    @NotBlank
+    private RolUsuario rolUsuario;
+
     //Relaciones
     //Un administrador, debería de tener citas, porque por eso trabaja
 

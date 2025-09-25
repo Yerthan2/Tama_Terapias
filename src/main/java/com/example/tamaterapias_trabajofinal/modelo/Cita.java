@@ -34,8 +34,9 @@ public class Cita {
     private Servicio servicio;
 
     @NotNull
-    @Positive
-    private Integer idAdministrador;
+    @ManyToOne
+    @JoinColumn(name = "administrador", nullable = false)
+    private Administrador administrador;
 
     //Como es una fecha en futuro, lo que tiene que ver que la fecha es para un futuro, no en el pasado
     @FutureOrPresent

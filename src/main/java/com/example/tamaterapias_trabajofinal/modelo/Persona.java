@@ -22,4 +22,8 @@ public abstract class Persona {
     @NotBlank
     protected String contrasena;
 
+    @NotBlank
+    protected RolUsuario rolUsuario;
+
+
 }

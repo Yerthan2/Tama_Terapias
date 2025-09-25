@@ -28,6 +28,9 @@ public class Usuario extends Persona{
     @Column(name = "fecha_registro")
     private LocalDate fecha_registro;
 
+    @NotBlank
+    private RolUsuario rolPersona;
+
     //Parte de las relaciones
     //Aquí tenemos que tener en cuenta, que el usuario puede tener muchos pedidos y muchas citas
 

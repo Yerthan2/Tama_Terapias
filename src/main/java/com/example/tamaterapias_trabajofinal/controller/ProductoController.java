@@ -21,12 +21,12 @@ public class ProductoController {
     }
 
     @PostMapping
-    public Producto crearProducto(Producto producto){
+    public Producto crearProducto(@RequestBody Producto producto){
         return productoService.guardarProducto(producto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Producto> obtenerProductoId(Integer id){
+    public ResponseEntity<Producto> obtenerProductoId(@PathVariable Integer id){
         Producto p = productoService.productoPorId(id);
         if(p == null){
             return ResponseEntity.notFound().build();
@@ -35,9 +35,19 @@ public class ProductoController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarProducto(Integer id){
+    public void eliminarProducto(@PathVariable Integer id){
         productoService.eliminarProducto(id);
     }
+
+    @PatchMapping("{id}")
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable Integer id, @RequestBody Producto p){
+        Producto productoActualizado = productoService.actualizarProducto(id, p);
+        if(productoActualizado == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(productoActualizado);
+    }
+
 
 
 }

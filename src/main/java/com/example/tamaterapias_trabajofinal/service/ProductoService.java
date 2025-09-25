@@ -42,4 +42,27 @@ public class ProductoService {
         return productoRepository.save(producto);
     }
 
+    public Producto actualizarProducto(Integer id, Producto productoNuevoActualizado){
+        Producto producto = productoPorId(id);
+
+        if(productoNuevoActualizado.getNombreProducto() != null){
+            producto.setNombreProducto(productoNuevoActualizado.getNombreProducto());
+        }
+        if (productoNuevoActualizado.getPrecio() != 0){
+            producto.setPrecio(productoNuevoActualizado.getPrecio());
+        }
+        if(productoNuevoActualizado.getImagen() != null){
+            producto.setImagen(productoNuevoActualizado.getImagen());
+        }
+        if(productoNuevoActualizado.getDetalles() != null){
+            producto.setImagen(productoNuevoActualizado.getDetalles().toString());
+        }
+        if(productoNuevoActualizado.getDescripcion() != null){
+            producto.setDescripcion(productoNuevoActualizado.getDescripcion());
+        }
+
+
+        return productoRepository.save(producto);
+    }
+
 }

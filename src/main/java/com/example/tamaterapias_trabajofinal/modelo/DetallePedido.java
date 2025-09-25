@@ -22,7 +22,7 @@ public class DetallePedido {
     @NotNull
     @ManyToOne
     @JoinColumn(name="id_pedido", nullable = false)
-    private Pedido Pedido;
+    private Pedido pedido;
 
     @NotNull
     @ManyToOne

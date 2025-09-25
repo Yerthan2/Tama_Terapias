@@ -1,6 +1,7 @@
 
 drop database if exists tama;
 create database if not exists tama;
+use tama;
 -- Tabla servicio
 CREATE TABLE servicio (
     id_servicio INT AUTO_INCREMENT PRIMARY KEY,
@@ -16,7 +17,9 @@ CREATE TABLE usuario (
     nombre VARCHAR(100) not null,
     email VARCHAR(100) not null,
     contrasena VARCHAR(100) not null,
-    fecha_registro DATETIME not null
+    fecha_registro DATETIME not null,
+    rolUsuario enum('ADMIN', 'USUARIO') NOT NULL
+
 );
 
 -- Tabla administrador
@@ -24,7 +27,9 @@ CREATE TABLE administrador (
     id_administrador INT AUTO_INCREMENT PRIMARY KEY not null,
     nombre VARCHAR(100) not null,
     email VARCHAR(100) not null unique,
-    contrasena VARCHAR(100) not null
+    contrasena VARCHAR(100) not null,
+    rolUsuario enum('ADMIN', 'USUARIO') NOT NULL
+
 );
 
 -- Tabla producto

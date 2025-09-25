@@ -6,19 +6,19 @@ INSERT INTO servicio (nombre_servicio, descripcion, duracion, precio) VALUES
                                                                           ('Masaje relajante', 'Masaje de cuerpo completo', 60, 50.00);
 
 -- Insertar usuarios
-INSERT INTO usuario (nombre, email, contrasena, fecha_registro) VALUES
-                                                                    ('Laura Gómez', 'laura@example.com', '1234', NOW()),
-                                                                    ('Carlos Ruiz', 'carlos@example.com', 'abcd', NOW());
+INSERT INTO usuario (nombre, email, contrasena, fecha_registro, rolUsuario) VALUES
+                                                                    ('Laura Gómez', 'laura@example.com', '1234', NOW(),'USUARIO'),
+                                                                    ('Carlos Ruiz', 'carlos@example.com', 'abcd', NOW(), 'USUARIO');
 
 -- Insertar administradores
-INSERT INTO administrador (nombre, email, contrasena) VALUES
-                                                          ('Ana Torres', 'ana.admin@example.com', 'admin123'),
-                                                          ('Luis Martínez', 'luis.admin@example.com', 'admin456');
+INSERT INTO administrador (nombre, email, contrasena,rolUsuario) VALUES
+                                                          ('Ana Torres', 'ana.admin@example.com', 'admin123', 'ADMIN'),
+                                                          ('Luis Martínez', 'luis.admin@example.com', 'admin456', 'ADMIN');
 
 -- Insertar productos
-INSERT INTO producto (nombre_producto, descripcion, precio) VALUES
-                                                                ('Champú herbal', 'Champú natural sin sulfatos', 8.50),
-                                                                ('Crema hidratante', 'Crema facial para piel seca', 12.00);
+INSERT INTO producto (nombre_producto, descripcion, precio, imagen) VALUES
+                                                                ('Champú herbal', 'Champú natural sin sulfatos', 8.50, 'foto.jpg'),
+                                                                ('Crema hidratante', 'Crema facial para piel seca', 12.00, 'foto2.jpg');
 
 -- Insertar pedidos
 INSERT INTO pedido (id_usuario, fecha_pedido, total, estado) VALUES
