@@ -12,12 +12,9 @@ public class AdministradorService {
     @Autowired
     private AdministradorRepository administradorRepository;
 
-    @Autowired
-
-
     //Crear Administrador
-
-    public Administrador crearAdministrador(Administrador administrador){
+/*
+    public Administrador crearAdministrador(Administrador adm){
         return administradorRepository.save(administrador);
     }
 
@@ -31,7 +28,7 @@ public class AdministradorService {
         administradorRepository.deleteById(id);
     }
 
-
+*/
 
 
 

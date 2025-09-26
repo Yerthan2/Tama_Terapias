@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/servicios")
+@RequestMapping("/servicios")
 public class ServicioController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class ServicioController {
     }
 
     //Eliminar Servicio
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void eliminarServicio(@PathVariable Integer id ){
         servicioService.eliminarServicio(id);
     }
