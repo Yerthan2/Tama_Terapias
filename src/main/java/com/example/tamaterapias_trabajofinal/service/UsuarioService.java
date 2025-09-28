@@ -28,12 +28,12 @@ public class UsuarioService {
 
     /**
      * Función para eliminar el usuario, si lo pide
-     * @param usuario
+     * @param id
      * @return
      */
 
-    public void eliminarUsuario(Usuario usuario){
-        usuarioRepository.delete(usuario);
+    public void eliminarUsuario(Integer id){
+        usuarioRepository.deleteById(id);
     }
 
 
