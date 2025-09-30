@@ -69,7 +69,7 @@ CREATE TABLE cita (
     id_servicio INT not null,
     id_administrador INT not null,
     fecha DATETIME not null,
-    estado ENUM('pendiente', 'confirmada', 'cancelada'),
+    estado ENUM('PENDIENTE', 'CONFIRMADA', 'CANCELADA'),
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
     FOREIGN KEY (id_servicio) REFERENCES servicio(id_servicio),
     FOREIGN KEY (id_administrador) REFERENCES administrador(id_administrador)

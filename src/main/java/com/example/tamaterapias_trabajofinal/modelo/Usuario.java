@@ -3,6 +3,7 @@ package com.example.tamaterapias_trabajofinal.modelo;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,8 +29,7 @@ public class Usuario extends Persona{
     @Column(name = "fecha_registro")
     private LocalDate fecha_registro;
 
-    @NotBlank
-    private RolUsuario rolPersona;
+
 
     //Parte de las relaciones
     //Aquí tenemos que tener en cuenta, que el usuario puede tener muchos pedidos y muchas citas

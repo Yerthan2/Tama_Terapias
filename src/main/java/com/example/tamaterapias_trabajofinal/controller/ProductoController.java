@@ -39,14 +39,14 @@ public class ProductoController {
         productoService.eliminarProducto(id);
     }
 
-    @PatchMapping("{id}")
+    /**@PatchMapping("{id}")
     public ResponseEntity<Producto> actualizarProducto(@PathVariable Integer id, @RequestBody Producto p){
         Producto productoActualizado = productoService.actualizarProducto(id, p);
         if(productoActualizado == null){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(productoActualizado);
-    }
+    }**/
 
 
 

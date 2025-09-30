@@ -1,11 +1,13 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "cita")
-
+@Data
 public class Cita {
 
     @Id
@@ -25,17 +27,20 @@ public class Cita {
     //Se utiliza Positive, para que el valor, sea mayor a 0
     @NotNull
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
     @NotNull
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name="id_servicio", nullable = false)
     private Servicio servicio;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "administrador", nullable = false)
+    @JsonBackReference
+    @JoinColumn(name = "id_administrador", nullable = false)
     private Administrador administrador;
 
     //Como es una fecha en futuro, lo que tiene que ver que la fecha es para un futuro, no en el pasado
@@ -44,6 +49,7 @@ public class Cita {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private EstadoPedido estadoPedido;
+    @Column(name = "estado")
+    private EstadoCita estado;
 
 }

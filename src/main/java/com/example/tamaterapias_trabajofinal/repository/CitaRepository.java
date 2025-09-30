@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface CitaRepository extends JpaRepository<Cita, Integer> {
 
-    List<Cita> buscarUsuarioId(Integer idUsuario);
-    List<Cita> buscarCitaEstado(EstadoCita estadoCita);
-    List<Cita> buscarEntreFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin);
+    List<Cita> findByUsuario_IdUsuario(Integer idUsuario);
+    List<Cita> findByEstado(EstadoCita estadoCita);
+    List<Cita> findByFechaBetween(LocalDateTime inicio, LocalDateTime fin);
 
     LocalDateTime fecha(LocalDateTime fecha);
 }

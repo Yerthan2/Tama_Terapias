@@ -6,6 +6,7 @@ import com.example.tamaterapias_trabajofinal.repository.CitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +22,7 @@ public class CitaService {
      * @param cita
      * @return
      */
-    public Cita crearCita(Cita cita){
+    public Cita crearCita(@RequestBody Cita cita){
         return citaRepository.save(cita);
     }
 
@@ -33,6 +34,9 @@ public class CitaService {
         citaRepository.deleteById(id);
     }
 
+    public List<Cita> listarCitas(){
+        return citaRepository.findAll();
+    }
 
     /**
      * Función para buscar una cita según su id sino, manda mensaje
@@ -52,7 +56,7 @@ public class CitaService {
      * @return
      */
     public List<Cita> citasUsuario(Integer idUsuario){
-       return citaRepository.buscarUsuarioId(idUsuario);
+       return citaRepository.findByUsuario_IdUsuario(idUsuario);
     }
 
     /**
@@ -62,11 +66,11 @@ public class CitaService {
      * @return
      */
     public List<Cita> buscarCitaEstado(EstadoCita estadoCita){
-        return citaRepository.buscarCitaEstado(estadoCita);
+        return citaRepository.findByEstado(estadoCita);
     }
 
     public List<Cita> citasRangoFecha(LocalDateTime fechaIncio, LocalDateTime fechaFin){
-        return citaRepository.buscarEntreFechas(fechaIncio, fechaFin);
+        return citaRepository.findByFechaBetween(fechaIncio, fechaFin);
     }
 
 

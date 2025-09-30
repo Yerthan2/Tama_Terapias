@@ -40,10 +40,7 @@ public class ServicioService {
         Servicio servicio = servicioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Servicio no encontrado"));
 
-        servicio.setNombreServicio(servicioActualizado.getNombreServicio());
-        servicio.setDescripcion(servicioActualizado.getDescripcion());
-        servicio.setDuracion(servicioActualizado.getDuracion());
-        servicio.setPrecio(servicioActualizado.getPrecio());
+
 
         return servicioRepository.save(servicio);
     }

@@ -1,4 +1,7 @@
+
+create database if not exists tama;
 use tama ;
+
 -- Insertar servicios
 INSERT INTO servicio (nombre_servicio, descripcion, duracion, precio) VALUES
                                                                           ('Corte de cabello', 'Corte clásico para hombre', 30, 15.00),
@@ -25,3 +28,8 @@ INSERT INTO pedido (id_usuario, fecha_pedido, total, estado) VALUES
                                                                  (1, NOW(), 20.50, 'pagado'),
                                                                  (2, NOW(), 12.00, 'pendiente');
 
+-- Insertar citas
+INSERT INTO cita (id_cita, id_usuario, id_servicio, id_administrador, fecha, estado) VALUES
+                                                                                (1,1, 1, 1, '2025-10-01 10:00:00', 'PENDIENTE'),   -- Laura con Ana, corte de cabello
+                                                                                (2,2, 2, 2, '2025-10-02 11:30:00', 'CONFIRMADA'), -- Carlos con Luis, manicura
+                                                                                (3,1, 3, 2, '2025-10-03 17:00:00', 'CANCELADA');  -- Laura con Luis, masaje relajante
