@@ -1,7 +1,11 @@
 package com.example.tamaterapias_trabajofinal.controller;
 
+import com.example.tamaterapias_trabajofinal.DTO.UsuarioRequestDTO;
+import com.example.tamaterapias_trabajofinal.DTO.UsuarioResponsetDTO;
+import com.example.tamaterapias_trabajofinal.mapper.UsuarioMapper;
 import com.example.tamaterapias_trabajofinal.modelo.Cita;
 import com.example.tamaterapias_trabajofinal.modelo.Usuario;
+import com.example.tamaterapias_trabajofinal.repository.UsuarioRepository;
 import com.example.tamaterapias_trabajofinal.service.CitaService;
 import com.example.tamaterapias_trabajofinal.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -19,20 +24,28 @@ public class UsuarioController {
 
     @Autowired
     private CitaService citaService;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
+    /**
+     * Crea un un usuario
+     * coge el primero lo creamos para en la segunda linea guardarlo en la bbdd
+     * @param usuario
+     * @return
+     */
     @PostMapping
-    public Usuario crearUsuario(@RequestBody Usuario usuario){
+    public UsuarioResponsetDTO crearUsuario(@RequestBody UsuarioRequestDTO usuario){
         return usuarioService.crearUsuario(usuario);
     }
 
     @GetMapping("/{id}")
-    public Usuario buscarUsuario(@PathVariable Integer id){
+    public UsuarioResponsetDTO buscarUsuario(@PathVariable Integer id){
         Usuario u = usuarioService.buscarUsuarioID(id);
-        return u;
+        return UsuarioMapper.toDTO(u);
     }
 
     @GetMapping
-    public List<Usuario> listarUsuarios(){
+    public List<UsuarioResponsetDTO> listarUsuarios(){
         return usuarioService.listarUsuarios();
     }
 

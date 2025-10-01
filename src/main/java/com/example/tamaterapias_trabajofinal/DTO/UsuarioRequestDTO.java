@@ -9,14 +9,14 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsuarioDTO {
+public class UsuarioRequestDTO {
 
-    private Integer idUsuario;
     private String nombre;
+    private String apellido1;
+    private String apellido2;
     private String email;
+    private String contrasena;
     private String rolUsuario;
     private LocalDate fechaRegistro;
-
-
 
 }

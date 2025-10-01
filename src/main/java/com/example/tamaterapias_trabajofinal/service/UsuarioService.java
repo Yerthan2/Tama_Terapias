@@ -1,5 +1,8 @@
 package com.example.tamaterapias_trabajofinal.service;
 
+import com.example.tamaterapias_trabajofinal.DTO.UsuarioRequestDTO;
+import com.example.tamaterapias_trabajofinal.DTO.UsuarioResponsetDTO;
+import com.example.tamaterapias_trabajofinal.mapper.UsuarioMapper;
 import com.example.tamaterapias_trabajofinal.modelo.Cita;
 import com.example.tamaterapias_trabajofinal.modelo.Usuario;
 import com.example.tamaterapias_trabajofinal.repository.UsuarioRepository;
@@ -8,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -19,11 +23,15 @@ public class UsuarioService {
 
     /**
      * Función apra crear un usuario
+     * coge el primero lo creamos para en la segunda linea guardarlo en la bbdd
      * @param usuario
      * @return
      */
-    public Usuario crearUsuario(Usuario usuario){
-        return usuarioRepository.save(usuario);
+    public UsuarioResponsetDTO crearUsuario(UsuarioRequestDTO usuario){
+
+        Usuario usuario1 = UsuarioMapper.toEntity(usuario);
+        Usuario guarda = usuarioRepository.save(usuario1);
+        return UsuarioMapper.toDTO(guarda);
     }
 
     /**
@@ -51,8 +59,10 @@ public class UsuarioService {
      * Devuelve todos los usuarios que haya
      * @return
      */
-    public List<Usuario> listarUsuarios(){
-        return usuarioRepository.findAll();
+    public List<UsuarioResponsetDTO> listarUsuarios(){
+        return usuarioRepository.findAll()
+                .stream().map(UsuarioMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
 

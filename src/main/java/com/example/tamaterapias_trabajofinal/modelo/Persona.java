@@ -19,7 +19,10 @@ public abstract class Persona {
     protected String nombre;
 
     @NotBlank
-    protected String apellido;
+    protected String apellido1;
+
+    @NotBlank
+    protected String apellido2;
 
     @NotBlank
     @Column(unique = true)
