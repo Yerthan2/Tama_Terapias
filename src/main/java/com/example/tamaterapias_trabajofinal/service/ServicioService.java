@@ -5,7 +5,9 @@ import com.example.tamaterapias_trabajofinal.repository.ServicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ServicioService {
@@ -30,8 +32,8 @@ public class ServicioService {
     }
 
     //Litar todos los servicios
-    public List<Servicio> listarTodosServicios(){
-        return servicioRepository.findAll();
+    public Set<Servicio> listarTodosServicios(){
+        return new HashSet<>(servicioRepository.findAll());
     }
 
     //Actualiza Servicio

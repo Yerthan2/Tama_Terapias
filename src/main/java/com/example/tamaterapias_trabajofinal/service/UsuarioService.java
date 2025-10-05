@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,19 +52,20 @@ public class UsuarioService {
       * @param id
      * @return
      */
-    public Usuario buscarUsuarioID(Integer id){
+ /*   public UsuarioRequestDTO buscarUsuarioID(Integer id){
         return usuarioRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Usuario no encontrado con el id" + id));
-    }
+    }*/
 
     /**
      * Devuelve todos los usuarios que haya
      * @return
      */
-    public List<UsuarioResponsetDTO> listarUsuarios(){
+    public Set<UsuarioResponsetDTO> listarUsuarios(){
         return usuarioRepository.findAll()
-                .stream().map(UsuarioMapper::toDTO)
-                .collect(Collectors.toList());
+                .stream()
+                .map(UsuarioMapper::toDTO)
+                .collect(Collectors.toSet());
     }
 
 

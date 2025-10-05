@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/productos")
@@ -16,13 +18,13 @@ public class ProductoController {
     private ProductoService productoService;
 
     @GetMapping
-    public List<Producto> getProductos(){
-        return productoService.listarProductos();
+    public Set<Producto> getProductos(){
+        return new HashSet<>(productoService.listarProductos());
     }
 
     @PostMapping
     public Producto crearProducto(@RequestBody Producto producto){
-        return productoService.guardarProducto(producto);
+        return productoService.crearProducto(producto);
     }
 
     @GetMapping("/{id}")
@@ -39,14 +41,7 @@ public class ProductoController {
         productoService.eliminarProducto(id);
     }
 
-    /**@PatchMapping("{id}")
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable Integer id, @RequestBody Producto p){
-        Producto productoActualizado = productoService.actualizarProducto(id, p);
-        if(productoActualizado == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(productoActualizado);
-    }**/
+
 
 
 

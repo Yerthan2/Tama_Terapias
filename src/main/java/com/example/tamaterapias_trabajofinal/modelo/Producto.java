@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "producto")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 public class Producto {
 
     @Id
@@ -23,6 +26,7 @@ public class Producto {
     private Integer idProducto;
 
     @NotBlank
+    @Column(name = "nombre_producto")
     private String nombreProducto;
 
     @NotBlank

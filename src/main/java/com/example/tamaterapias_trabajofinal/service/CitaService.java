@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CitaService {
@@ -34,8 +37,8 @@ public class CitaService {
         citaRepository.deleteById(id);
     }
 
-    public List<Cita> listarCitas(){
-        return citaRepository.findAll();
+    public Set<Cita> listarCitas(){
+        return new HashSet<>(citaRepository.findAll());
     }
 
     /**
@@ -55,7 +58,7 @@ public class CitaService {
      * @param idUsuario
      * @return
      */
-    public List<Cita> citasUsuario(Integer idUsuario){
+    public Set<Cita> citasUsuario(Integer idUsuario){
        return citaRepository.findByUsuario_IdUsuario(idUsuario);
     }
 
@@ -65,11 +68,11 @@ public class CitaService {
      * @param estadoCita
      * @return
      */
-    public List<Cita> buscarCitaEstado(EstadoCita estadoCita){
+    public Set<Cita> buscarCitaEstado(EstadoCita estadoCita){
         return citaRepository.findByEstado(estadoCita);
     }
 
-    public List<Cita> citasRangoFecha(LocalDateTime fechaIncio, LocalDateTime fechaFin){
+    public Set<Cita> citasRangoFecha(LocalDateTime fechaIncio, LocalDateTime fechaFin){
         return citaRepository.findByFechaBetween(fechaIncio, fechaFin);
     }
 

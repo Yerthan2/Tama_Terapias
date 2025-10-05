@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/citas")
@@ -29,7 +30,7 @@ public class CitaController {
     }
 
     @GetMapping
-    public List<Cita> getCitas(){
+    public Set<Cita> getCitas(){
         return citaService.listarCitas();
     }
 
@@ -51,7 +52,7 @@ public class CitaController {
      */
 
     @GetMapping("/usuario/{idUsuario}")
-    public List<Cita> citasUsuario(@PathVariable Integer idUsuario){
+    public Set<Cita> citasUsuario(@PathVariable Integer idUsuario){
         return citaService.citasUsuario(idUsuario);
     }
 
@@ -69,7 +70,7 @@ public class CitaController {
      * Busca citas según el estado que tengan, sirve para ver el historial de las cumplidas
      */
     @GetMapping("/estado/{estado}")
-    public List<Cita> buscarCitaEstado(EstadoCita estadoCita){
+    public Set<Cita> buscarCitaEstado(EstadoCita estadoCita){
         return citaService.buscarCitaEstado(estadoCita);
     }
 
@@ -78,7 +79,7 @@ public class CitaController {
      */
 
     @GetMapping("/fechas")
-    public List<Cita> buscarCitaEntreFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin){
+    public Set<Cita> buscarCitaEntreFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin){
         return citaService.citasRangoFecha(fechaInicio, fechaFin);
     }
 

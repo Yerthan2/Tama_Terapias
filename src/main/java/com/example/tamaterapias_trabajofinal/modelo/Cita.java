@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -17,6 +18,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "cita")
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 public class Cita {
 
     @Id
@@ -27,19 +30,19 @@ public class Cita {
     //Se utiliza Positive, para que el valor, sea mayor a 0
     @NotNull
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("id_usuario")
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
     @NotNull
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("servicio-cita")
     @JoinColumn(name="id_servicio", nullable = false)
     private Servicio servicio;
 
     @NotNull
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("admin-cita")
     @JoinColumn(name = "id_administrador", nullable = false)
     private Administrador administrador;
 

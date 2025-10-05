@@ -7,11 +7,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +25,7 @@ public class Usuario extends Persona{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
+    @EqualsAndHashCode.Include
     private Integer idUsuario;
 
     @PastOrPresent
@@ -35,9 +38,9 @@ public class Usuario extends Persona{
     //Aquí tenemos que tener en cuenta, que el usuario puede tener muchos pedidos y muchas citas
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Pedido> pedidos;
+    private Set<Pedido> pedidos;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Cita> citas;
+    private Set<Cita> citas;
 
 }

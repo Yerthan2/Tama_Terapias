@@ -3,12 +3,15 @@ package com.example.tamaterapias_trabajofinal.service;
 import com.example.tamaterapias_trabajofinal.controller.ProductoController;
 import com.example.tamaterapias_trabajofinal.modelo.Producto;
 import com.example.tamaterapias_trabajofinal.repository.ProductoRepository;
+import jakarta.persistence.SecondaryTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ProductoService {
@@ -28,8 +31,8 @@ public class ProductoService {
 
     //Lista todos los proudctos
 
-    public List<Producto> listarProductos(){
-        return productoRepository.findAll();
+    public Set<Producto> listarProductos(){
+        return new HashSet<>(productoRepository.findAll());
     }
 
     //Busca un producto por su id (importante!!!)
@@ -38,7 +41,5 @@ public class ProductoService {
                 .orElseThrow(()-> new RuntimeException("Producto no encontrado"));
    }
 
-    public Producto guardarProducto(Producto producto){
-        return productoRepository.save(producto);
-    }
+
 }

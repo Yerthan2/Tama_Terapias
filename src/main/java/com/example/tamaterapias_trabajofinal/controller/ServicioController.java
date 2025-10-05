@@ -4,10 +4,13 @@ import com.example.tamaterapias_trabajofinal.modelo.Servicio;
 import com.example.tamaterapias_trabajofinal.repository.AdministradorRepository;
 import com.example.tamaterapias_trabajofinal.repository.ServicioRepository;
 import com.example.tamaterapias_trabajofinal.service.ServicioService;
+import org.aspectj.lang.annotation.control.CodeGenerationHint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/servicios")
@@ -21,8 +24,8 @@ public class ServicioController {
 
     //Función para obtener todos los servicios
     @GetMapping
-    public List<Servicio> getServicios(){
-        return servicioService.listarTodosServicios();
+    public Set<Servicio> getServicios(){
+        return new HashSet<>(servicioService.listarTodosServicios());
     }
 
     //Eliminar Servicio
@@ -42,6 +45,12 @@ public class ServicioController {
         return servicioService.crearServicio(servicio);
     }
 
+    //Busca un servicio
+
+    @GetMapping("/{id}")
+    public Servicio buscarServicio(@PathVariable Integer id){
+        return servicioService.servicioPorId(id);
+    }
 
 
 

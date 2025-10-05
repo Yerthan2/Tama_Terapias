@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -38,15 +40,15 @@ public class UsuarioController {
         return usuarioService.crearUsuario(usuario);
     }
 
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public UsuarioResponsetDTO buscarUsuario(@PathVariable Integer id){
         Usuario u = usuarioService.buscarUsuarioID(id);
         return UsuarioMapper.toDTO(u);
-    }
+    }*/
 
     @GetMapping
-    public List<UsuarioResponsetDTO> listarUsuarios(){
-        return usuarioService.listarUsuarios();
+    public Set<UsuarioResponsetDTO> listarUsuarios(){
+        return new HashSet<>(usuarioService.listarUsuarios());
     }
 
 
@@ -57,7 +59,7 @@ public class UsuarioController {
 
 
     @GetMapping("/{id}/citas")
-    public List<Cita> citasUsuario(@PathVariable Integer id){
-        return citaService.citasUsuario(id);
+    public Set<Cita> citasUsuario(@PathVariable Integer id){
+        return new HashSet<>(citaService.citasUsuario(id));
     }
 }

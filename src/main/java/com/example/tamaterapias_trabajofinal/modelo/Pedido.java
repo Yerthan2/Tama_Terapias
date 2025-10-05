@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jdk.jfr.Name;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.processing.Exclude;
 
@@ -17,6 +18,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "pedido")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 public class Pedido {
 
     @Id
