@@ -1,21 +1,16 @@
 package com.example.tamaterapias_trabajofinal.controller;
 
-import com.example.tamaterapias_trabajofinal.DTO.UsuarioRequestDTO;
-import com.example.tamaterapias_trabajofinal.DTO.UsuarioResponsetDTO;
-import com.example.tamaterapias_trabajofinal.mapper.UsuarioMapper;
-import com.example.tamaterapias_trabajofinal.modelo.Cita;
-import com.example.tamaterapias_trabajofinal.modelo.Usuario;
+import com.example.tamaterapias_trabajofinal.DTO.CitaResponseDTO;
+import com.example.tamaterapias_trabajofinal.DTO.usuario.UsuarioRequestDTO;
+import com.example.tamaterapias_trabajofinal.DTO.usuario.UsuarioResponsetDTO;
 import com.example.tamaterapias_trabajofinal.repository.UsuarioRepository;
 import com.example.tamaterapias_trabajofinal.service.CitaService;
 import com.example.tamaterapias_trabajofinal.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -59,7 +54,7 @@ public class UsuarioController {
 
 
     @GetMapping("/{id}/citas")
-    public Set<Cita> citasUsuario(@PathVariable Integer id){
+    public Set<CitaResponseDTO> citasUsuario(@PathVariable Integer id){
         return new HashSet<>(citaService.citasUsuario(id));
     }
 }

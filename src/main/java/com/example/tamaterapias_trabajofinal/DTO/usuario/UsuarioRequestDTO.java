@@ -1,4 +1,4 @@
-package com.example.tamaterapias_trabajofinal.DTO;
+package com.example.tamaterapias_trabajofinal.DTO.usuario;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

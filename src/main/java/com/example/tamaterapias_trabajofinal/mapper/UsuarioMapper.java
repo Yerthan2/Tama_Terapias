@@ -1,7 +1,7 @@
 package com.example.tamaterapias_trabajofinal.mapper;
 
-import com.example.tamaterapias_trabajofinal.DTO.UsuarioRequestDTO;
-import com.example.tamaterapias_trabajofinal.DTO.UsuarioResponsetDTO;
+import com.example.tamaterapias_trabajofinal.DTO.usuario.UsuarioRequestDTO;
+import com.example.tamaterapias_trabajofinal.DTO.usuario.UsuarioResponsetDTO;
 import com.example.tamaterapias_trabajofinal.modelo.RolUsuario;
 import com.example.tamaterapias_trabajofinal.modelo.Usuario;
 

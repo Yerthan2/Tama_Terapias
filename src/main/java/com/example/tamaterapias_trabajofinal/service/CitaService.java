@@ -1,11 +1,14 @@
 package com.example.tamaterapias_trabajofinal.service;
 
+import com.example.tamaterapias_trabajofinal.DTO.CitaResponseDTO;
+import com.example.tamaterapias_trabajofinal.mapper.CitaMapper;
 import com.example.tamaterapias_trabajofinal.modelo.Cita;
 import com.example.tamaterapias_trabajofinal.modelo.EstadoCita;
 import com.example.tamaterapias_trabajofinal.repository.CitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
@@ -13,6 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class CitaService {
@@ -25,20 +29,26 @@ public class CitaService {
      * @param cita
      * @return
      */
-    public Cita crearCita(@RequestBody Cita cita){
-        return citaRepository.save(cita);
+    public CitaResponseDTO crearCita(@RequestBody Cita cita){
+
+        Cita citaGuardada = citaRepository.save(cita);
+        return CitaMapper.toDTO(citaGuardada);
+
     }
 
     /**
      * Función para eliminar citar, le pasamos un id
      * @param id
      */
-    public void eliminarCita(Integer id){
+    public void eliminarCita(@PathVariable Integer id){
         citaRepository.deleteById(id);
     }
 
-    public Set<Cita> listarCitas(){
-        return new HashSet<>(citaRepository.findAll());
+    public Set<CitaResponseDTO> listarCitas(){
+        List<Cita> lista =  citaRepository.findAll();
+        return lista.stream()
+                .map(CitaMapper::toDTO)
+                .collect(Collectors.toSet());
     }
 
     /**
@@ -46,10 +56,10 @@ public class CitaService {
      * @param id
      * @return
      */
-    public Cita bucarCitaID(Integer id){
+    public CitaResponseDTO bucarCitaID(@PathVariable Integer id){
 
-        return citaRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Cita no encontrada id :" + id));
+        Cita cita = citaRepository.findById(id).orElseThrow(()-> new RuntimeException("no encontrada la cita"));
+        return CitaMapper.toDTO(cita);
 
     }
 
@@ -58,8 +68,12 @@ public class CitaService {
      * @param idUsuario
      * @return
      */
-    public Set<Cita> citasUsuario(Integer idUsuario){
-       return citaRepository.findByUsuario_IdUsuario(idUsuario);
+    public Set<CitaResponseDTO> citasUsuario(@PathVariable Integer idUsuario){
+
+        return citaRepository.findByUsuario_IdUsuario(idUsuario)
+                .stream().map(CitaMapper::toDTO)
+                .collect(Collectors.toSet());
+
     }
 
     /**
@@ -68,12 +82,16 @@ public class CitaService {
      * @param estadoCita
      * @return
      */
-    public Set<Cita> buscarCitaEstado(EstadoCita estadoCita){
-        return citaRepository.findByEstado(estadoCita);
+    public Set<CitaResponseDTO> buscarCitaEstado(EstadoCita estadoCita){
+        return citaRepository.findByEstado(estadoCita)
+                .stream().map(CitaMapper::toDTO)
+                .collect(Collectors.toSet());
     }
 
-    public Set<Cita> citasRangoFecha(LocalDateTime fechaIncio, LocalDateTime fechaFin){
-        return citaRepository.findByFechaBetween(fechaIncio, fechaFin);
+    public Set<CitaResponseDTO> citasRangoFecha(LocalDateTime fechaIncio, LocalDateTime fechaFin){
+        return citaRepository.findByFechaBetween(fechaIncio, fechaFin)
+                .stream().map(CitaMapper::toDTO)
+                .collect(Collectors.toSet());
     }
 
 

@@ -1,21 +1,19 @@
 package com.example.tamaterapias_trabajofinal.controller;
 
-import com.example.tamaterapias_trabajofinal.DTO.UsuarioRequestDTO;
-import com.example.tamaterapias_trabajofinal.DTO.UsuarioResponsetDTO;
+import com.example.tamaterapias_trabajofinal.DTO.CitaResponseDTO;
+import com.example.tamaterapias_trabajofinal.DTO.usuario.UsuarioRequestDTO;
+import com.example.tamaterapias_trabajofinal.DTO.usuario.UsuarioResponsetDTO;
 import com.example.tamaterapias_trabajofinal.modelo.Administrador;
 import com.example.tamaterapias_trabajofinal.modelo.Cita;
 import com.example.tamaterapias_trabajofinal.modelo.Producto;
-import com.example.tamaterapias_trabajofinal.modelo.Usuario;
 import com.example.tamaterapias_trabajofinal.service.AdministradorService;
 import com.example.tamaterapias_trabajofinal.service.CitaService;
 import com.example.tamaterapias_trabajofinal.service.ProductoService;
 import com.example.tamaterapias_trabajofinal.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -103,12 +101,12 @@ public class AdministradorController {
     /// /////// CITAS /////////
 
     @PostMapping("/citas")
-    public Cita crearCita(@RequestBody  Cita cita){
+    public CitaResponseDTO crearCita(@RequestBody  Cita cita){
         return citaService.crearCita(cita);
     }
 
     @GetMapping("/citas")
-    public Set<Cita> listarCita(){
+    public Set<CitaResponseDTO> listarCita(){
         return new HashSet<>(citaService.listarCitas());
     }
 
@@ -118,7 +116,7 @@ public class AdministradorController {
     }
 
     @GetMapping("/citas/{id}")
-    public Cita buscarCita(@PathVariable Integer id){
+    public CitaResponseDTO buscarCita(@PathVariable Integer id){
         return citaService.bucarCitaID(id);
     }
 

@@ -1,5 +1,6 @@
 package com.example.tamaterapias_trabajofinal.controller;
 
+import com.example.tamaterapias_trabajofinal.DTO.CitaResponseDTO;
 import com.example.tamaterapias_trabajofinal.modelo.Cita;
 import com.example.tamaterapias_trabajofinal.modelo.EstadoCita;
 import com.example.tamaterapias_trabajofinal.service.CitaService;
@@ -25,12 +26,12 @@ public class CitaController {
      * @return
      */
     @PostMapping
-    public Cita crearCita(@RequestBody Cita cita){
+    public CitaResponseDTO crearCita(@RequestBody Cita cita){
         return citaService.crearCita(cita);
     }
 
     @GetMapping
-    public Set<Cita> getCitas(){
+    public Set<CitaResponseDTO> getCitas(){
         return citaService.listarCitas();
     }
 
@@ -41,7 +42,8 @@ public class CitaController {
      * @return
      */
     @GetMapping("/{id}")
-    public Cita buscarCita(@PathVariable Integer id){
+    public CitaResponseDTO buscarCita(@PathVariable Integer id){
+
         return citaService.bucarCitaID(id);
     }
 
@@ -52,7 +54,7 @@ public class CitaController {
      */
 
     @GetMapping("/usuario/{idUsuario}")
-    public Set<Cita> citasUsuario(@PathVariable Integer idUsuario){
+    public Set<CitaResponseDTO> citasUsuario(@PathVariable Integer idUsuario){
         return citaService.citasUsuario(idUsuario);
     }
 
@@ -70,7 +72,7 @@ public class CitaController {
      * Busca citas según el estado que tengan, sirve para ver el historial de las cumplidas
      */
     @GetMapping("/estado/{estado}")
-    public Set<Cita> buscarCitaEstado(EstadoCita estadoCita){
+    public Set<CitaResponseDTO> buscarCitaEstado(@PathVariable EstadoCita estadoCita){
         return citaService.buscarCitaEstado(estadoCita);
     }
 
@@ -79,7 +81,8 @@ public class CitaController {
      */
 
     @GetMapping("/fechas")
-    public Set<Cita> buscarCitaEntreFechas(LocalDateTime fechaInicio, LocalDateTime fechaFin){
+    public Set<CitaResponseDTO> buscarCitaEntreFechas(@RequestParam("inicio") LocalDateTime fechaInicio,
+                                                      @RequestParam("fin") LocalDateTime fechaFin){
         return citaService.citasRangoFecha(fechaInicio, fechaFin);
     }
 

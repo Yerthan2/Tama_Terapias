@@ -12,6 +12,7 @@ import org.hibernate.annotations.processing.Exclude;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -43,6 +44,6 @@ public class Pedido {
     private EstadoPedido estadoPedido;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<DetallePedido> detalles;
+    private Set<DetallePedido> detalles;
 
 }

@@ -1,18 +1,16 @@
 package com.example.tamaterapias_trabajofinal.service;
 
-import com.example.tamaterapias_trabajofinal.DTO.UsuarioRequestDTO;
-import com.example.tamaterapias_trabajofinal.DTO.UsuarioResponsetDTO;
+import com.example.tamaterapias_trabajofinal.DTO.usuario.UsuarioRequestDTO;
+import com.example.tamaterapias_trabajofinal.DTO.usuario.UsuarioResponsetDTO;
 import com.example.tamaterapias_trabajofinal.mapper.UsuarioMapper;
 import com.example.tamaterapias_trabajofinal.modelo.Administrador;
 import com.example.tamaterapias_trabajofinal.modelo.Usuario;
 import com.example.tamaterapias_trabajofinal.repository.AdministradorRepository;
 import com.example.tamaterapias_trabajofinal.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
