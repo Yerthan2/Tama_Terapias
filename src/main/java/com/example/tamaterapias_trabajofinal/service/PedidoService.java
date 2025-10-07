@@ -52,6 +52,13 @@ public class PedidoService {
         return pedidoRepository.save(pedido);
     }
 
+    /**
+     *
+     * @param id
+     */
+    public void eliminarPedido(Integer id){
+        pedidoRepository.deleteById(id);
+    }
 
 
 }

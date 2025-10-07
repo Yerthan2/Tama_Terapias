@@ -18,12 +18,9 @@ public class DetallePedidoController {
 
     @Autowired
     DetallePedidoService detallePedidoService ;
-    @Autowired
-    private ResponseEntityExceptionHandler responseEntityExceptionHandler;
-
 
     @GetMapping
-    public Set<DetallePedidoDTO> obtenerTodosDetallesPedido(){
+    public Set<DetallePedidoDTO> obtenerDetallesPedido(){
         return new HashSet<>(detallePedidoService.listarDetallePedido());
     }
 
@@ -31,4 +28,12 @@ public class DetallePedidoController {
     public DetallePedidoDTO obtenerPorId(@PathVariable Integer id){
         return detallePedidoService.obtenerPorId(id);
     }
+
+    @DeleteMapping("/{id}")
+    public void eliminarDetalle(@PathVariable Integer id){
+        detallePedidoService.eliminarDetallePorId(id);
+    }
+
+
+
 }

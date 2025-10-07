@@ -41,4 +41,13 @@ public class DetallePedidoService {
         return detallePedidoMapper.toDto(detalle);
     }
 
+
+    /**
+     * Sirve para eliminar un detalle pedido por su id
+     * @param id
+     */
+    public void eliminarDetallePorId(Integer id){
+        detallePedidoRepository.deleteById(id);
+    }
+
 }
