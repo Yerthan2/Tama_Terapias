@@ -1,5 +1,6 @@
 package com.example.tamaterapias_trabajofinal.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -27,6 +28,7 @@ public class DetallePedido {
     @NotNull
     @ManyToOne
     @JoinColumn(name="id_pedido", nullable = false)
+    @JsonBackReference
     private Pedido pedido;
 
     @NotNull

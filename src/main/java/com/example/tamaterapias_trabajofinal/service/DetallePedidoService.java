@@ -21,7 +21,7 @@ public class DetallePedidoService {
     private DetallePedidoMapper detallePedidoMapper;
 
     /**
-     * Sirve para listar todos los detallePedido
+     * Lista todos loso detalles pedidos que hayan
      * @return
      */
     public Set<DetallePedidoDTO> listarDetallePedido(){
@@ -31,7 +31,7 @@ public class DetallePedidoService {
     }
 
     /**
-     * Sirve para buscar alguno en específico
+     * Busca por una id un detalle específico
      * @param id
      * @return
      */
@@ -41,13 +41,19 @@ public class DetallePedidoService {
         return detallePedidoMapper.toDto(detalle);
     }
 
-
     /**
-     * Sirve para eliminar un detalle pedido por su id
+     * Elimina el detalle pedido que le hayamos pasado por id
+     * si lo hace devuelve true, si no false
      * @param id
      */
-    public void eliminarDetallePorId(Integer id){
-        detallePedidoRepository.deleteById(id);
+    public boolean eliminarDetallePorId(Integer id){
+
+        if(detallePedidoRepository.existsById(id)){
+            detallePedidoRepository.deleteById(id);
+            return true;
+            }
+        return false;
+
     }
 
 }
