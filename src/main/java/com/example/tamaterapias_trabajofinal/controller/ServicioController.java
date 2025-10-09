@@ -14,6 +14,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/servicios")
+@CrossOrigin(origins = "*")
 public class ServicioController {
 
     @Autowired

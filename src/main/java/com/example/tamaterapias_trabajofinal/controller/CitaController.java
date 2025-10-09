@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/citas")
+@RequestMapping("/api/citas")
+@CrossOrigin(origins = "*")
 public class CitaController {
 
     @Autowired

@@ -41,9 +41,6 @@ public class ServicioService {
     public Servicio actualizarServicio(Integer id, Servicio servicioActualizado) {
         Servicio servicio = servicioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Servicio no encontrado"));
-
-
-
         return servicioRepository.save(servicio);
     }
 

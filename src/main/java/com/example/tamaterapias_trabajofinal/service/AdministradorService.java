@@ -24,14 +24,24 @@ public class AdministradorService {
 
     //Crear Administrador
 
+    /**
+     * Devuelve el administrador que hayamos creado
+     * @param adm
+     * @return
+     */
     public Administrador crearAdministrador(Administrador adm){
        return administradorRepository.save(adm);
     }
 
 
-    //Elimina a otro administrador a través de un id
-    public void eliminarAdministrador(Integer id){
-        administradorRepository.deleteById(id);
+    //Elimina a otro administrador a través de un id si pasa la validacion
+    //Utilizamos exists porque devuelve un boolean, lo que necesitamos apra comporbar
+    public boolean eliminarAdministrador(Integer id){
+        if(administradorRepository.existsById(id)){
+            administradorRepository.deleteById(id);
+            return true;
+        }
+        else return false;
     }
 
     //Busca a todos los administradores

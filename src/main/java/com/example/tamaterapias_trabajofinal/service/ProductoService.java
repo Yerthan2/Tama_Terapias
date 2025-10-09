@@ -19,23 +19,42 @@ public class ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
-    //Crear producto pasándolo por parámetro
+    /**
+     * Crear producto pasándolo por parámetro
+     */
+
     public Producto crearProducto(Producto producto){
         return productoRepository.save(producto);
     }
 
-    //Elimina producto a través de un id
-    public void eliminarProducto(Integer id){
-        productoRepository.deleteById(id);
+    /**
+     * comprobamos si la id que nos han pasado, existe si existe, elimina y devuleve true
+     * si no, devuelve false
+     * @param id
+     * @return
+     */
+    public boolean eliminarProducto(Integer id){
+        if(productoRepository.existsById(id)){
+            productoRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
-    //Lista todos los proudctos
+    /**
+     * Devuelve todos los productos que tenemos
+     * @return
+     */
 
     public Set<Producto> listarProductos(){
         return new HashSet<>(productoRepository.findAll());
     }
 
-    //Busca un producto por su id (importante!!!)
+    /**
+     * Buscamos un producto por su id, si no lo encuentra, devuelve un mensaje
+     * @param id
+     * @return
+     */
    public Producto productoPorId(Integer id){
         return productoRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Producto no encontrado"));

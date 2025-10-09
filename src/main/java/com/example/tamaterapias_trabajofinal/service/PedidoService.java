@@ -53,11 +53,17 @@ public class PedidoService {
     }
 
     /**
-     *
+     * Busca si existe, si existe, devuelve true y elimina el pedido
+     * si no , devuelve false
      * @param id
      */
-    public void eliminarPedido(Integer id){
-        pedidoRepository.deleteById(id);
+    public boolean eliminarPedido(Integer id){
+        if(pedidoRepository.existsById(id)){
+            pedidoRepository.deleteById(id);
+            return true;
+        }
+        return  false;
+
     }
 
 

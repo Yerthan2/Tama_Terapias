@@ -10,14 +10,19 @@ import com.example.tamaterapias_trabajofinal.service.AdministradorService;
 import com.example.tamaterapias_trabajofinal.service.CitaService;
 import com.example.tamaterapias_trabajofinal.service.ProductoService;
 import com.example.tamaterapias_trabajofinal.service.UsuarioService;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/administradores")
+@RequestMapping("/api/administradores")
+@CrossOrigin(origins = "*")
 public class AdministradorController {
 
     @Autowired
@@ -33,25 +38,52 @@ public class AdministradorController {
     @Autowired
     private CitaService citaService;
 
+    /**
+     * Lista a los administradores que hayan registrados en la bbdd
+     * @return
+     */
+
     @GetMapping
-    public Set<Administrador> getAdiminstradores(){
-        return administradorService.listarAdministradores();
+    public ResponseEntity<Set<Administrador>> getAdiminstradores(){
+        return ResponseEntity.ok(administradorService.listarAdministradores());
     }
+
+    /**
+     * Crea un nuevo admin y si todo fue bie devuelve el cod 201
+     * @param administrador
+     */
 
     @PostMapping
-    public void crearAdministrador(@RequestBody Administrador administrador){
-
-        administradorService.crearAdministrador(administrador);
+    public ResponseEntity<Administrador> crearAdministrador(@RequestBody Administrador administrador){
+        Administrador adminCreado = administradorService.crearAdministrador(administrador);
+        return ResponseEntity.status(HttpStatus.CREATED).body(adminCreado);
     }
 
+    /**
+     * Eliminamos a un admin, según el id q nos pase
+     * COD : 204 (No Content si fue correcto) 404 si no existe el adm
+     * @param id
+     */
     @DeleteMapping("/{id}")
-    public void eliminarAdministrador(@PathVariable Integer id){
-        administradorService.eliminarAdministrador(id);
+    public ResponseEntity<?> eliminarAdministrador(@PathVariable Integer id){
+
+        boolean adminEliminado = administradorService.eliminarAdministrador(id);
+        if(adminEliminado){
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Admin no encontrado");
+        }
     }
 
+    /**
+     * Busca un admin por el id que le pasemos
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
-    public Administrador buscarAdm(@PathVariable Integer id){
-       return administradorService.buscarPorId(id);
+    public ResponseEntity<Administrador> buscarAdm(@PathVariable Integer id){
+      return ResponseEntity.ok(administradorService.buscarPorId(id));
     }
 
     ///////// USUARIO //////

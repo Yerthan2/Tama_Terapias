@@ -33,13 +33,18 @@ public class UsuarioService {
     }
 
     /**
-     * Función para eliminar el usuario, si lo pide
+     * Función para eliminar el usuario, primero comprueba de que exista y luego elimina si existe
      * @param id
      * @return
      */
 
-    public void eliminarUsuario(Integer id){
-        usuarioRepository.deleteById(id);
+    public boolean eliminarUsuario(Integer id){
+        if(usuarioRepository.existsById(id)){
+            usuarioRepository.deleteById(id);
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
@@ -48,10 +53,11 @@ public class UsuarioService {
       * @param id
      * @return
      */
- /*   public UsuarioRequestDTO buscarUsuarioID(Integer id){
-        return usuarioRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Usuario no encontrado con el id" + id));
-    }*/
+    public UsuarioResponsetDTO buscarUsuarioID(Integer id){
+        Usuario u =  usuarioRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("El usuario que buscas no existe"));
+        return UsuarioMapper.toDTO(u);
+    }
 
     /**
      * Devuelve todos los usuarios que haya
