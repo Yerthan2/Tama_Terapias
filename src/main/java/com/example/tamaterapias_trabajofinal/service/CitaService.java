@@ -25,11 +25,11 @@ public class CitaService {
     private CitaRepository citaRepository;
 
     /**
-     * Función para crear Cita
+     * Función para crear Cita y devuelve CitaDto, para que no se muetren todos los datos
      * @param cita
      * @return
      */
-    public CitaResponseDTO crearCita(@RequestBody Cita cita){
+    public CitaResponseDTO crearCita(Cita cita){
 
         Cita citaGuardada = citaRepository.save(cita);
         return CitaMapper.toDTO(citaGuardada);
@@ -40,10 +40,21 @@ public class CitaService {
      * Función para eliminar citar, le pasamos un id
      * @param id
      */
-    public void eliminarCita(@PathVariable Integer id){
-        citaRepository.deleteById(id);
+    public boolean eliminarCita(Integer id){
+
+        if(citaRepository.existsById(id)){
+            citaRepository.deleteById(id);
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
+    /**
+     * Litsa todas las citas que haya, pero devolvemos citaDto
+     * @return
+     */
     public Set<CitaResponseDTO> listarCitas(){
         List<Cita> lista =  citaRepository.findAll();
         return lista.stream()
@@ -52,11 +63,11 @@ public class CitaService {
     }
 
     /**
-     * Función para buscar una cita según su id sino, manda mensaje
+     * Función para buscar una citadto según su id sino, manda mensaje
      * @param id
      * @return
      */
-    public CitaResponseDTO bucarCitaID(@PathVariable Integer id){
+    public CitaResponseDTO bucarCitaID( Integer id){
 
         Cita cita = citaRepository.findById(id).orElseThrow(()-> new RuntimeException("no encontrada la cita"));
         return CitaMapper.toDTO(cita);
@@ -68,7 +79,7 @@ public class CitaService {
      * @param idUsuario
      * @return
      */
-    public Set<CitaResponseDTO> citasUsuario(@PathVariable Integer idUsuario){
+    public Set<CitaResponseDTO> citasUsuario( Integer idUsuario){
 
         return citaRepository.findByUsuario_IdUsuario(idUsuario)
                 .stream().map(CitaMapper::toDTO)
@@ -88,6 +99,14 @@ public class CitaService {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Sirve para hacder un filtro, para buscar entre fechas, mira las fechas que hay entre fechaInicio y fechaFin
+     * Devuelve todas las citas que haya entre ese rango de fechas
+     *
+     * @param fechaIncio
+     * @param fechaFin
+     * @return
+     */
     public Set<CitaResponseDTO> citasRangoFecha(LocalDateTime fechaIncio, LocalDateTime fechaFin){
         return citaRepository.findByFechaBetween(fechaIncio, fechaFin)
                 .stream().map(CitaMapper::toDTO)

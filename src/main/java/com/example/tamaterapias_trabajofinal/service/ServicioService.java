@@ -15,23 +15,42 @@ public class ServicioService {
     @Autowired
     private ServicioRepository servicioRepository;
 
-    //crear un servicio
+    /**
+     * Crea un nuevo servicio
+     * @param servicio
+     * @return
+     */
     public Servicio crearServicio(Servicio servicio){
         return servicioRepository.save(servicio);
     }
 
-    //Eliminar servicio a través de un id
-    public void eliminarServicio(Integer id){
-        servicioRepository.deleteById(id);
+    /**
+     * Elimina el servicio con un id que se nos pase
+     * @param id
+     */
+    public boolean eliminarServicio(Integer id){
+        if(servicioRepository.existsById(id)){
+            servicioRepository.deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
     }
 
-    //Listar para todos los servicio
+    /**
+     * Busca un servicio con la id que le pasemos
+     * @param id
+     * @return
+     */
     public Servicio servicioPorId(Integer id){
         return servicioRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Servicio no encontrado"));
     }
 
-    //Litar todos los servicios
+    /**
+     * Lista todos los servicios que haya
+     * @return
+     */
     public Set<Servicio> listarTodosServicios(){
         return new HashSet<>(servicioRepository.findAll());
     }

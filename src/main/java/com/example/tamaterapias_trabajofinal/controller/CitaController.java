@@ -4,8 +4,11 @@ import com.example.tamaterapias_trabajofinal.DTO.CitaResponseDTO;
 import com.example.tamaterapias_trabajofinal.modelo.Cita;
 import com.example.tamaterapias_trabajofinal.modelo.EstadoCita;
 import com.example.tamaterapias_trabajofinal.service.CitaService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -22,18 +25,25 @@ public class CitaController {
     private CitaService citaService;
 
     /**
-     * Sirve para crear una cita
+     * Sirve para crear una cita y devuelvo una CitaDTO, que es sin algunos parámetros
      * @param cita
      * @return
      */
     @PostMapping
-    public CitaResponseDTO crearCita(@RequestBody Cita cita){
-        return citaService.crearCita(cita);
+    public ResponseEntity<CitaResponseDTO> crearCita(@RequestBody Cita cita){
+
+        CitaResponseDTO citaNuevaDTO = citaService.crearCita(cita);
+        return ResponseEntity.status(HttpStatus.CREATED).body(citaNuevaDTO);
+
     }
 
+    /**
+     * Devuelve todas las citas (cita dto) que haya en la bbdd
+     * @return
+     */
     @GetMapping
-    public Set<CitaResponseDTO> getCitas(){
-        return citaService.listarCitas();
+    public ResponseEntity<Set<CitaResponseDTO>> listarCitas(){
+        return ResponseEntity.ok(citaService.listarCitas());
     }
 
 
@@ -43,9 +53,11 @@ public class CitaController {
      * @return
      */
     @GetMapping("/{id}")
-    public CitaResponseDTO buscarCita(@PathVariable Integer id){
+    public ResponseEntity<CitaResponseDTO> buscarCita(@PathVariable Integer id){
 
-        return citaService.bucarCitaID(id);
+        CitaResponseDTO citaNuevaDTO = citaService.bucarCitaID(id);
+        return ResponseEntity.ok(citaNuevaDTO);
+
     }
 
     /**
@@ -64,8 +76,16 @@ public class CitaController {
      * @param id
      */
     @DeleteMapping("/{id}")
-    public void eliminarCita(@PathVariable Integer id){
-        citaService.eliminarCita(id);
+    public ResponseEntity<?> eliminarCita(@PathVariable Integer id){
+
+
+        boolean eliminar = citaService.eliminarCita(id);
+        if(eliminar){
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("cita no encontrada");
+        }
     }
 
 
