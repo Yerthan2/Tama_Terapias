@@ -56,8 +56,8 @@ public class CitaService {
      * @return
      */
     public Set<CitaResponseDTO> listarCitas(){
-        List<Cita> lista =  citaRepository.findAll();
-        return lista.stream()
+
+        return citaRepository.findAll().stream()
                 .map(CitaMapper::toDTO)
                 .collect(Collectors.toSet());
     }

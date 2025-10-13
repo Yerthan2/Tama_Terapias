@@ -67,8 +67,8 @@ public class CitaController {
      */
 
     @GetMapping("/usuario/{idUsuario}")
-    public Set<CitaResponseDTO> citasUsuario(@PathVariable Integer idUsuario){
-        return citaService.citasUsuario(idUsuario);
+    public ResponseEntity<Set<CitaResponseDTO>> citasUsuario(@PathVariable Integer idUsuario){
+       return ResponseEntity.ok(citaService.citasUsuario(idUsuario));
     }
 
     /**
@@ -90,11 +90,11 @@ public class CitaController {
 
 
     /**
-     * Busca citas según el estado que tengan, sirve para ver el historial de las cumplidas
+     * Filtra las citas por su estado, sirve como un historial
      */
     @GetMapping("/estado/{estado}")
-    public Set<CitaResponseDTO> buscarCitaEstado(@PathVariable EstadoCita estadoCita){
-        return citaService.buscarCitaEstado(estadoCita);
+    public ResponseEntity<Set<CitaResponseDTO>> buscarCitaEstado(@PathVariable("estado") EstadoCita estadoCita){
+        return ResponseEntity.ok(citaService.buscarCitaEstado(estadoCita));
     }
 
     /**
@@ -102,9 +102,9 @@ public class CitaController {
      */
 
     @GetMapping("/fechas")
-    public Set<CitaResponseDTO> buscarCitaEntreFechas(@RequestParam("inicio") LocalDateTime fechaInicio,
+    public ResponseEntity<Set<CitaResponseDTO>> buscarCitaEntreFechas(@RequestParam("inicio") LocalDateTime fechaInicio,
                                                       @RequestParam("fin") LocalDateTime fechaFin){
-        return citaService.citasRangoFecha(fechaInicio, fechaFin);
+       return ResponseEntity.ok(citaService.citasRangoFecha(fechaInicio, fechaFin));
     }
 
 
