@@ -47,6 +47,7 @@ CREATE TABLE pedido (
     id_usuario INT not null,
     fecha_pedido DATETIME not null,
     total DECIMAL(10,2) not null,
+    direccion_envio varchar(100) not null,
     estado ENUM('pendiente', 'pagado', 'entregado') not null,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 );

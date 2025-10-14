@@ -24,9 +24,9 @@ INSERT INTO producto (nombre_producto, descripcion, precio, imagen) VALUES
                                                                 ('Crema hidratante', 'Crema facial para piel seca', 12.00, 'foto2.jpg');
 
 -- Insertar pedidos
-INSERT INTO pedido (id_usuario, fecha_pedido, total, estado) VALUES
-                                                                 (1, NOW(), 20.50, 'pagado'),
-                                                                 (2, NOW(), 12.00, 'pendiente');
+INSERT INTO pedido (id_usuario, fecha_pedido, total, direccion_envio, estado) VALUES
+                                                                 (1, NOW(), 20.50, 'C/FDAFa','pagado'),
+                                                                 (2, NOW(), 12.00, 'C/DFAFDASF','pendiente');
 
 -- Insertar citas
 INSERT INTO cita (id_cita, id_usuario, id_servicio, id_administrador, fecha, estado) VALUES
