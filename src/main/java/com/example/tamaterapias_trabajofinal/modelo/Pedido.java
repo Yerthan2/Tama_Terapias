@@ -42,7 +42,6 @@ public class Pedido {
 
     @NotNull(message = "El subtotal no puede ser nulo")
     @DecimalMin(value = "0.0", inclusive = false, message = "El subtotal debe ser mayor que 0")
-    @Column(precision = 10, scale = 2)
     private Double subtotal;
 
     @Enumerated(EnumType.STRING)

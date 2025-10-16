@@ -42,7 +42,6 @@ public class Servicio {
 
     @NotNull(message = "El precio del servicio no puede estar vacío")
     @DecimalMin(value = "0.0", inclusive = false, message = "El precio debe ser mayor que cero")
-    @Column(precision = 10, scale = 2)
     private Double precio;
 
 

@@ -26,7 +26,7 @@ public class PedidoMapper {
                 pedido.getUsuario().getApellido1() + " " +
                 pedido.getUsuario().getApellido2());
         dto.setFechaPedido(pedido.getFechaPedido());
-        dto.setTotal(pedido.getTotal());
+        dto.setTotal(pedido.getSubtotal());
         dto.setEstadoPedido(pedido.getEstadoPedido().toString());
 
         Set<DetallePedidoDTO> detalleDTOs = pedido.getDetalles().stream()

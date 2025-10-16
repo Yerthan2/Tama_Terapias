@@ -39,7 +39,6 @@ public class Producto {
 
     @NotNull(message = "El precio del producto no puede ser nulo")
     @DecimalMin(value = "0.0", inclusive = false, message = "El precio del producto debe ser mayor que 0")
-    @Column(precision = 10, scale = 2)
     private Double precio;
 
     @NotBlank(message = "La imagen debe de introducirse la url")
