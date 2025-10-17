@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/NavBar";
-import Servicios from "./pages/Servicios";
-import Tienda from "./pages/Tienda";
+import {Servicios} from "./pages/Servicios";
+import {Tienda} from "./pages/Tienda";
 import Cita from "./pages/Cita";
 import Home from "./pages/Home";
 import {Footer} from "./components/Footer"

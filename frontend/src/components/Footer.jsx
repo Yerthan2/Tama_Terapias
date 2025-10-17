@@ -25,7 +25,7 @@ export const Footer = () => {
       </div>
 
       {/* RRSS (IG, Facebook, Tiktok)*/}
-      <div>
+      <div style={{display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
         <h4>RRSS</h4>
         <a
             href="https://www.instagram.com/tamaterapias"

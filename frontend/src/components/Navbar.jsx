@@ -1,7 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 
 export const Navbar = () => {
+
+  const navigate = useNavigate();
+  //Si el usuario ha iniciado sesión, se habrá guardado en un LocalStorage 
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+  //Handle significa manejar
+  //Esto nos va a servir para saber si tiene que ir al perfil o si va a hacer login
+
+  const handleUserClick=() =>{
+    if(usuario){
+      navigate("/perfil")
+    }else{
+      navigate("/login")
+    }
+  }
+
+  //Este manejador sirve para cerrar sesión y vuelve a la página de inicio
+
+  const handleLogOut =() =>{
+    localStorage.removeItem("usuario");
+    navigate("/")
+  }
+
+
   return (
 
     <nav className="navbar bg-body-tertiary  px-3">
@@ -29,6 +53,7 @@ export const Navbar = () => {
             Cita
           </Link>
         </div>
+        
       </div>
     </nav>
   );

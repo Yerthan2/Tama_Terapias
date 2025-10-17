@@ -2,7 +2,6 @@ package com.example.tamaterapias_trabajofinal.mapper;
 
 import com.example.tamaterapias_trabajofinal.DTO.DetallePedidoDTO;
 import com.example.tamaterapias_trabajofinal.modelo.DetallePedido;
-import org.hibernate.annotations.Comment;
 import org.springframework.stereotype.Component;
 
 @Component

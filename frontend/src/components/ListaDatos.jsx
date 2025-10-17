@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {api} from "../api/api"
 
 
@@ -27,7 +27,7 @@ export const ListaDatos = ({endpoint, title, renderItem}) =>{
     }, [endpoint]);
 
     //Si sigue cargando, se va a devolver un cargando
-    if (loading)
+    if (cargando)
     return (
       <div className="text-center mt-5">
         <p>Cargando {title.toLowerCase()}...</p>

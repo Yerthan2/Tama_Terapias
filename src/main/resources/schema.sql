@@ -1,12 +1,12 @@
-
 create database if not exists tama;
 use tama ;
 
 -- Insertar servicios
 INSERT INTO servicio (nombre_servicio, descripcion, duracion, precio) VALUES
-                                                                          ('Corte de cabello', 'Corte clásico para hombre', 30, 15.00),
-                                                                          ('Manicura', 'Manicura básica con esmalte', 45, 20.00),
-                                                                          ('Masaje relajante', 'Masaje de cuerpo completo', 60, 50.00);
+                                                                          ('Acupuntura sin Agujas', 'Acupuntura sin agujas', 60, 45.00),
+                                                                          ('Acupuntura con Agujas', 'Acupuntura con agujas', 60, 40.00),
+                                                                          ('Masaje relajante', 'Masaje de cuerpo completo', 60, 50.00),
+                                                                          ( 'Quiromasaje', 'Quiromasaje realizado con todo', 60, 60)
 
 -- Insertar usuarios
 INSERT INTO usuario (nombre, email, contrasena, fecha_registro, rolUsuario) VALUES
@@ -21,7 +21,8 @@ INSERT INTO administrador (nombre, email, contrasena,rolUsuario) VALUES
 -- Insertar productos
 INSERT INTO producto (nombre_producto, descripcion, precio, imagen) VALUES
                                                                 ('Champú herbal', 'Champú natural sin sulfatos', 8.50, 'foto.jpg'),
-                                                                ('Crema hidratante', 'Crema facial para piel seca', 12.00, 'foto2.jpg');
+                                                                ('Crema hidratante', 'Crema facial para piel seca', 12.00, 'foto2.jpg'),
+                                                                ('Ampolla de Cobre', '48 ampollas de cobre', 16.5, 'foto3.jpg');
 
 -- Insertar pedidos
 INSERT INTO pedido (id_usuario, fecha_pedido, total, direccion_envio, estado) VALUES
